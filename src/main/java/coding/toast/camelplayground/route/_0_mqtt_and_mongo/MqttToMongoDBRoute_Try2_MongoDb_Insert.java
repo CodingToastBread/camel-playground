@@ -2,6 +2,7 @@ package coding.toast.camelplayground.route._0_mqtt_and_mongo;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
+import org.springframework.stereotype.Component;
 
 /**
  * step 2: mqtt subscribe -> mongodb insert

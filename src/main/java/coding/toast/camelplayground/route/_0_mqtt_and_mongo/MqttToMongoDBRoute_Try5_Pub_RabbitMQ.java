@@ -3,6 +3,7 @@ package coding.toast.camelplayground.route._0_mqtt_and_mongo;
 import coding.toast.camelplayground.process.TemperatureUnderBoundProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
+import org.springframework.stereotype.Component;
 
 /**
  * step 5: mqtt subscribe -> preprocess -> mongodb insert + save to file + publish to rabbitMQ

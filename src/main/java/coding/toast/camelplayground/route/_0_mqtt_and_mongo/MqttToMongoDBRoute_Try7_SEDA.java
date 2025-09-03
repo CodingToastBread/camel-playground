@@ -4,6 +4,7 @@ import coding.toast.camelplayground.process.HeavyOperateProcessor;
 import coding.toast.camelplayground.process.RandomSensorDataGeneratingProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.util.List;

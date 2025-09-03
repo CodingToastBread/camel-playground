@@ -1,11 +1,12 @@
 package coding.toast.camelplayground.route._0_mqtt_and_mongo;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
 
 /**
  * step 1: simply subscribe to mqtt broker without any code
  */
-//@Component
+@Component
 public class MqttToMongoDBRoute_Try1_MQTT_Consumer extends RouteBuilder {
     @Override
     public void configure() throws Exception {

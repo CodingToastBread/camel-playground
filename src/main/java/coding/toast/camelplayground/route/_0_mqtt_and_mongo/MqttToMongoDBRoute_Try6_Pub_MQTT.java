@@ -4,6 +4,7 @@ import coding.toast.camelplayground.process.RandomSensorDataGeneratingProcessor;
 import coding.toast.camelplayground.process.TemperatureUnderBoundProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
+import org.springframework.stereotype.Component;
 
 /**
  * step 6: [mqtt publish] + [mqtt subscribe -> preprocess -> mongodb insert + save to file + publish to rabbitMQ]

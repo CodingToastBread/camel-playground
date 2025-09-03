@@ -3,6 +3,7 @@ package coding.toast.camelplayground.route._0_mqtt_and_mongo;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 

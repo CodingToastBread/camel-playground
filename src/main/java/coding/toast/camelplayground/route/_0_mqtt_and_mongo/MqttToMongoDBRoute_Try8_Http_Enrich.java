@@ -5,6 +5,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.hc.core5.http.HttpHeaders;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 

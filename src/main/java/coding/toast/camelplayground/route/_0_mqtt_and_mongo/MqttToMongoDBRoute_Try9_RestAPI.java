@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.apache.hc.core5.http.HttpHeaders;
+import org.springframework.stereotype.Component;
 
 /**
  * step 9: 마지막으로 rest dsl 을 활용해서 외부에 rest api 를 노출시킵니다.<br>
@@ -17,7 +18,7 @@ public class MqttToMongoDBRoute_Try9_RestAPI extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         restConfiguration().component("netty-http")
-                .host("0.0.0.0").port(8080)
+                .host("0.0.0.0").port(8081)
                 .bindingMode(RestBindingMode.off);
 
         rest("/api")

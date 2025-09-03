@@ -1,8 +1,8 @@
 ### GET request to example server
-GET localhost:8080/api/sample-data
+GET localhost:8081/api/sample-data
 
 ### Send POST request with json body
-POST localhost:8080/api/mqtt-pub
+POST localhost:8081/api/mqtt-pub
 Content-Type: application/json
 
 {
