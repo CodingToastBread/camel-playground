@@ -21,7 +21,7 @@ docker exec -it eclipse-mosquitto ./mqtt_publish_json.sh 'camel/test/topic'
 # mongodb container 실행
 docker run -d --name mongo -p 27017:27017 \ 
         -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=secret \
-        mongo:latest
+        mongo:8.0.13
 
 # 정상 실행 후 아래처럼 명령어 입력해서 mongosh 열어보기
 docker exec -it mongo mongosh -u admin -p secret
@@ -40,40 +40,17 @@ db.sensorData.find().sort({timestamp:-1}).limit(3)
 ### 3. RabbitMQ
 
 ```bash
-docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13-management
+docker run -d -v "./container/rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf" \
+        -v "./container/rabbitmq/config/definitions.json:/etc/rabbitmq/definitions.json" \
+        --name rabbitmq -p 5673:5672 -p 15673:15672 rabbitmq:3.13-management
+# 설정 파일(definitions.json)을 통해서 계정(id: guest , pw :guest) 가 생기고,
+# sensor-data 라는 queue 도 생성합니다.
 ```
-RabbitMQ 컨테이너 실행 후, 브라우저에서  http://localhost:15672/#/queues 로 접속합니다.<br>
+RabbitMQ 컨테이너 실행 후, 브라우저에서  http://localhost:15672/#/queues 로 접속해보시기 바랍니다.<br>
 이후 로그인도 진행해주세요. 로그인 계정은 `guest/guest` 입니다.<br>
-<br>
+마지막으로 로그인 후에 Queue 에서 sensor-data 가 정상적으로 생겼는지 확인합니다. (아래그림 참고)
 
-그리고 나서 아래와 같이 Queue 를 하나 생성해줍니다.
-
-![msedge_D3T7t5L6Zc.png](README_img/msedge_D3T7t5L6Zc.png)
-
-- `Queues and Streams` 탭 클릭
-- `Add a new Queue` 를 펼치고
-- Queue 생성 정보 작성
-  - Virtual host: `/`
-  - Type: `Classic`
-  - Name: `sensor-data`
-  - Durability: `Durable`
-  - Auto delete: `No`
-- 이후 하단 좌측에 있는 `Add queue` 버튼 클릭
-
-<br>
-
-화면 새로고침을 하고, 생성된 큐가 목록에 나오면 이름 클릭
-
-![msedge_h58emtTD4U.png](README_img/msedge_h58emtTD4U.png)
-
-<br>
-
-그리고 Bindings 를 펼쳐서 새로운 binding 설정을 추가한다.
-
-![msedge_2ePHWnF9DG.png](README_img/msedge_2ePHWnF9DG.png)
-
-- From exchange: `amq.direct`
-- Routing key: `sensor-data`
+![msedge_PVDZ0lK2co.png](README_img/msedge_PVDZ0lK2co.png)
 
 <br><br><br><br>
 
@@ -96,5 +73,18 @@ Try? 의 번호 순서대로 `@Component` 애노테이션이 주석을 한번씩
 3. Try3 @Component 주석 해제, Try2 @Component 다시 주석 처리 
 ```
 
+<br><br><br>
 
+## 참고한 것들
+
+- https://camel.apache.org/manual/java-dsl.html
+- https://camel.apache.org/components/4.14.x/paho-component.html
+- https://camel.apache.org/components/4.14.x/mongodb-component.html
+- https://camel.apache.org/components/4.14.x/seda-component.html
+- https://camel.apache.org/components/4.14.x/http-component.html
+- https://camel.apache.org/components/4.14.x/dataformats/jackson-dataformat.html
+- https://camel.apache.org/components/4.14.x/languages/simple-language.html
+- https://alanhohn.com/posts/2016/camel-enricher-3/
+- https://www.masterspringboot.com/camel/apache-camel-rest-example-for-beginners/
+- https://stackoverflow.com/questions/58266688/how-to-create-a-queue-in-rabbitmq-upon-startup
 

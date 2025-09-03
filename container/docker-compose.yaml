@@ -1,0 +1,25 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2.0.22
+    ports:
+      - '1883:1883'
+    volumes:
+      - ./mosquitto/config:/mosquitto/config:ro
+      - ./mosquitto/script/mqtt_publish_json.sh:/mqtt_publish_json.sh:ro
+
+  mongo:
+    image: mongo:8.0.13
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - ./rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./rabbitmq/config/definitions.json:/etc/rabbitmq/definitions.json:ro
