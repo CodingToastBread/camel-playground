@@ -1,0 +1,14 @@
+### GET request to example server
+GET localhost:8080/api/sample-data
+
+### Send POST request with json body
+POST localhost:8080/api/mqtt-pub
+Content-Type: application/json
+
+{
+  "city": "WAWA",
+  "temperature": 17.27,
+  "humidity": 9.71,
+  "type": "sensor",
+  "timestamp": "2025-09-03T11:00:01+09:00"
+}
