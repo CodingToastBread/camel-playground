@@ -1,5 +1,6 @@
 services:
   mqtt:
+    container_name: eclipse-mosquitto
     image: eclipse-mosquitto:2.0.22
     ports:
       - '1883:1883'
@@ -8,6 +9,7 @@ services:
       - ./mosquitto/script/mqtt_publish_json.sh:/mqtt_publish_json.sh:ro
 
   mongo:
+    container_name: mongo
     image: mongo:8.0.13
     ports:
       - '27017:27017'
@@ -16,6 +18,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=secret
 
   rabbitmq:
+    container_name: rabbitmq
     image: rabbitmq:3.13-management
     ports:
       - '5672:5672'

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  * step 1: simply subscribe to mqtt broker without any code
  */
-@Component
+//@Component
 public class MqttToMongoDBRoute_Try1_MQTT_Consumer extends RouteBuilder {
     @Override
     public void configure() throws Exception {
