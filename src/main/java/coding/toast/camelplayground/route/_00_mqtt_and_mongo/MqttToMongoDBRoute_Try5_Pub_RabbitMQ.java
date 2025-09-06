@@ -1,4 +1,4 @@
-package coding.toast.camelplayground.route._0_mqtt_and_mongo;
+package coding.toast.camelplayground.route._00_mqtt_and_mongo;
 
 import coding.toast.camelplayground.process.TemperatureUnderBoundProcessor;
 import org.apache.camel.builder.RouteBuilder;

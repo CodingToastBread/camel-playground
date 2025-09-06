@@ -1,4 +1,4 @@
-package coding.toast.camelplayground.route._0_mqtt_and_mongo;
+package coding.toast.camelplayground.route._00_mqtt_and_mongo;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
