@@ -1,14 +1,13 @@
-package coding.toast.camelplayground.route;
+package coding.toast.camelplayground.route._01_split;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.stereotype.Component;
 
 /**
  * 낙서장입니다!
  */
 //@Component
-public class PracticeNote extends RouteBuilder {
+public class HttpJsonArraySplit extends RouteBuilder {
     /// https://freeformatter.com/cron-expression-generator-quartz.html
     @Override
     public void configure() throws Exception {
@@ -21,12 +20,16 @@ public class PracticeNote extends RouteBuilder {
 
                 // json 배열 형태를 모두
                 .split().jsonpath("$")
+                    // split 때문에 독립적인 Exchange 생성되고, 모든 Body 타입은 LinkedHashMap 이 생성된다.
+                    .log("${exchangeId} + ${body.class.name}")
 
-                // split 때문에 독립적인 Exchange 생성되고, 모든 Body 타입은 LinkedHashMap 이 생성된다.
-                .log("${exchangeId} + ${body.class.name}")
-                .log("${body}")
+                    // Body 내용 확인
+                    .log("${body}")
 
-                .to("mongodb:mongoClient?database=myDatabase&collection=users&operation=insert");
+                    // MongoDB 에 insert
+                    .to("mongodb:mongoClient?database=myDatabase&collection=users&operation=insert")
+                .end() // split sub-route 종료, split(), choice(), multicast() 등에서 사용됨
+                .log("ALL JSON DATA INSERT FINISH!")
         ;
 
     }

@@ -57,6 +57,24 @@
 
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-jsonpath-starter</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-csv-starter</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-mongodb</artifactId>
+            <version>${camel.version}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-paho-starter</artifactId>
             <version>${camel.version}</version>
         </dependency>
@@ -106,10 +124,17 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-quartz-starter</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-testcontainers</artifactId>
